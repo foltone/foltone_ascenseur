@@ -25,22 +25,20 @@ end
 
 Citizen.CreateThread(function()
 	while true do
-        if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
-            wait = 500
-            local playerCoords = GetEntityCoords(PlayerPedId())
-            for i = 1, #ConfigAscenseur do
-                local v = ConfigAscenseur[i]
-                local distancevestiaire = GetDistanceBetweenCoords(playerCoords, v.position.x, v.position.y, v.position.z, true)
-                if distancevestiaire <= 5.0 then
-                    wait = 0
-                    DrawMarker(6, v.position.x, v.position.y, v.position.z-1, 0.0, 0.0, 9.0, 0.0, 0.0, 0.0, 0.5, 1.0, 0.5, 114, 204, 114, 250, false, false, 2, false, false, false, false)
-                end
-                if distancevestiaire <= 1.0 then
-                    wait = 0
-                    ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1) 
-                    if IsControlJustPressed(1, 51) then
-                        RageUI.Visible(MenuAscenseur, not RageUI.Visible(MenuAscenseur))
-                    end
+        wait = 500
+        local playerCoords = GetEntityCoords(PlayerPedId())
+        for i = 1, #ConfigAscenseur do
+            local v = ConfigAscenseur[i]
+            local distancevestiaire = GetDistanceBetweenCoords(playerCoords, v.position.x, v.position.y, v.position.z, true)
+            if distancevestiaire <= 5.0 then
+                wait = 0
+                DrawMarker(6, v.position.x, v.position.y, v.position.z-1, 0.0, 0.0, 9.0, 0.0, 0.0, 0.0, 0.5, 1.0, 0.5, 114, 204, 114, 250, false, false, 2, false, false, false, false)
+            end
+            if distancevestiaire <= 1.0 then
+                wait = 0
+                ESX.ShowHelpNotification("Appuyer sur ~g~[E]~s~ pour acceder à ~g~l'ascenseur", 1) 
+                if IsControlJustPressed(1, 51) then
+                    RageUI.Visible(MenuAscenseur, not RageUI.Visible(MenuAscenseur))
                 end
             end
         end
